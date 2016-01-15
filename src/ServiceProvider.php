@@ -35,7 +35,7 @@ class ServiceProvider extends BaseServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/config/elasticsearcher.php' => config_path('elasticsearcher.php'),
+			__DIR__.'/../config/elasticsearcher.php' => config_path('elasticsearcher.php'),
 		]);
 	}
 }
