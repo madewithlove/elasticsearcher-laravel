@@ -1,0 +1,19 @@
+{
+  "name": "madewithlove/elasticsearcher-laravel",
+  "description": "Elasticsearcher provider for Laravel",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "elasticsearch",
+    "elastic"
+  ],
+  "require": {
+    "madewithlove/elasticsearcher": "^0.4.1",
+    "php": ">=5.5.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Madewithlove\\ElasticSearcherLaravel\\": ["src"]
+    }
+  }
+}
