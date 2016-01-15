@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
 	{
 		$this->app->singleton(ElasticSearcher::class, function ($app) {
 			$environment = new Environment(
-				['hosts' => $app['config']->get('elasticsearcher.connection.hosts')]
+				['hosts' => $app['config']->get('elasticsearcher.hosts')]
 			);
 			return new ElasticSearcher($environment);
 		});
@@ -27,5 +27,15 @@ class ServiceProvider extends BaseServiceProvider
 		$this->app->singleton(IndicesManager::class, function ($app) {
 			return $app->make(ElasticSearcher::class)->indicesManager();
 		});
+	}
+
+	/**
+	 * Boot the service provider
+	 */
+	public function boot()
+	{
+		$this->publishes([
+			__DIR__.'/config/elasticsearcher.php' => config_path('elasticsearcher.php'),
+		]);
 	}
 }

@@ -17,3 +17,9 @@ composer require madewithlove/elasticsearcher-laravel
     Madewithlove\ElasticSearcherLaravel\ServiceProvider::class,
 )
 ```
+
+3. Publish the configuration file `config/elasticsearcher.php`
+
+```
+php artisan vendor:publish --provider="Madewithlove\ElasticSearcherLaravel\ServiceProvider"
+```
