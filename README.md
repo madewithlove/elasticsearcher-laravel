@@ -4,22 +4,22 @@
 
 1. Installation of the latest version is easy via [composer](https://getcomposer.org/):
 
-```
-composer require madewithlove/elasticsearcher-laravel
-```
+	```
+	composer require madewithlove/elasticsearcher-laravel
+	```
 
 2. Update config/app.php to register the provider
 
-```php
-# Add `Madewithlove\ElasticSearcherLaravel\ServiceProvider` to the `providers` array
-'providers' => array(
-		...
-		Madewithlove\ElasticSearcherLaravel\ServiceProvider::class,
-)
-```
+	```php
+	# Add `Madewithlove\ElasticSearcherLaravel\ServiceProvider` to the `providers` array
+	'providers' => array(
+			...
+			Madewithlove\ElasticSearcherLaravel\ServiceProvider::class,
+	)
+	```
 
 3. Publish the configuration file `config/elasticsearcher.php`
 
-```
-php artisan vendor:publish --provider="Madewithlove\ElasticSearcherLaravel\ServiceProvider"
-```
+	```
+	php artisan vendor:publish --provider="Madewithlove\ElasticSearcherLaravel\ServiceProvider"
+	```
