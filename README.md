@@ -1,5 +1,8 @@
 # elasticsearcher-laravel
 
+This package allows easier implementation of the [madewithlove/elasticsearcher](https://github.com/madewithlove/elasticsearcher) package.
+More information on their [docs](https://github.com/madewithlove/elasticsearcher#elasticsearcher).
+
 ## Installation
 
 1. Installation of the latest version is easy via [composer](https://getcomposer.org/):
