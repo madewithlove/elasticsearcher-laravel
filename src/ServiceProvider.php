@@ -7,6 +7,7 @@ use ElasticSearcher\ElasticSearcher;
 use ElasticSearcher\Environment;
 use ElasticSearcher\Managers\DocumentsManager;
 use ElasticSearcher\Managers\IndicesManager;
+use Madewithlove\ElasticSearcherLaravel\Console\CreateIndexCommand;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -36,6 +37,10 @@ class ServiceProvider extends BaseServiceProvider
 	{
 		$this->publishes([
 			__DIR__.'/../config/elasticsearcher.php' => config_path('elasticsearcher.php'),
+		]);
+
+		$this->commands([
+			CreateIndexCommand::class,
 		]);
 	}
 }
