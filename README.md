@@ -26,3 +26,15 @@ More information on their [docs](https://github.com/madewithlove/elasticsearcher
 	```
 	php artisan vendor:publish --provider="Madewithlove\ElasticSearcherLaravel\ServiceProvider"
 	```
+
+## Usage
+
+### Configuration
+
+You can use `config/elasticsearcher.php` for configuring elasticsearcher.
+
+### Console
+
+```
+php artisan search:create-index <index-name>
+```
