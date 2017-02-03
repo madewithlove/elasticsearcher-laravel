@@ -12,7 +12,17 @@ return [
 	*/
 
 	'hosts' => [
-		['localhost:9200']
-	]
+		'localhost:9200',
+	],
+
+	/*
+	|--------------------------------------------------------------------------
+	| Elasticsearch indices
+	|--------------------------------------------------------------------------
+	|
+	| Define which indices should be registered with Elasticsearcher. Use the
+	| FQDN of the index.
+	*/
+	'indices' => [],
 
 ];

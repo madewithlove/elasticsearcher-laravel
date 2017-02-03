@@ -42,5 +42,11 @@ class ServiceProvider extends BaseServiceProvider
 		$this->commands([
 			CreateIndexCommand::class,
 		]);
+
+		$indices = array_map(function($index) {
+			return $this->app->make($index);
+		}, $this->app['config']->get('elasticsearcher.indices', []));
+
+		$this->app->make(IndicesManager::class)->registerIndices($indices);
 	}
 }
