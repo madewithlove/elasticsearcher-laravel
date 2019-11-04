@@ -14,5 +14,12 @@
     "psr-4": {
       "Madewithlove\\ElasticSearcherLaravel\\": ["src"]
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Madewithlove\\ElasticSearcherLaravel\\ServiceProvider"
+      ]
+    }
   }
 }
