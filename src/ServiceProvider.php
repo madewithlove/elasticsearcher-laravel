@@ -26,7 +26,14 @@ class ServiceProvider extends BaseServiceProvider
 			return $app->make(ElasticSearcher::class)->documentsManager();
 		});
 		$this->app->singleton(IndicesManager::class, function ($app) {
-			return $app->make(ElasticSearcher::class)->indicesManager();
+			$indicesManager = $app->make(ElasticSearcher::class)->indicesManager();
+
+			$indices = array_map(function($index) use ($app) {
+				return $app->make($index);
+			}, $app['config']->get('elasticsearcher.indices', []));
+
+			$indicesManager->registerIndices($indices);
+			return $indicesManager;
 		});
 	}
 
@@ -42,11 +49,5 @@ class ServiceProvider extends BaseServiceProvider
 		$this->commands([
 			CreateIndexCommand::class,
 		]);
-
-		$indices = array_map(function($index) {
-			return $this->app->make($index);
-		}, $this->app['config']->get('elasticsearcher.indices', []));
-
-		$this->app->make(IndicesManager::class)->registerIndices($indices);
 	}
 }
