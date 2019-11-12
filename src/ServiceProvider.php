@@ -20,11 +20,18 @@ class ServiceProvider extends BaseServiceProvider
 			$environment = new Environment(
 				['hosts' => $app['config']->get('elasticsearcher.hosts')]
 			);
-			return new ElasticSearcher($environment);
+			$elasticSearcher = new ElasticSearcher($environment);
+
+			$this->extendDocumentsManager($elasticSearcher->documentsManager());
+			$this->extendIndicesManager($elasticSearcher->indicesManager());
+
+			return $elasticSearcher;
 		});
+
 		$this->app->singleton(DocumentsManager::class, function ($app) {
 			return $app->make(ElasticSearcher::class)->documentsManager();
 		});
+
 		$this->app->singleton(IndicesManager::class, function ($app) {
 			return $app->make(ElasticSearcher::class)->indicesManager();
 		});
@@ -42,11 +49,26 @@ class ServiceProvider extends BaseServiceProvider
 		$this->commands([
 			CreateIndexCommand::class,
 		]);
+	}
 
+	/**
+	 * Configures the provided Document manager.
+	 * @param DocumentsManager $manager DocumentsManager to be configured.
+	 */
+	protected function extendDocumentsManager(DocumentsManager $manager): void
+	{
+	}
+
+	/**
+	 * Configures the provided Indices manager.
+	 * @param IndicesManager $manager IndicesManager to be configured.
+	 */
+	protected function extendIndicesManager(IndicesManager $manager): void
+	{
 		$indices = array_map(function($index) {
 			return $this->app->make($index);
 		}, $this->app['config']->get('elasticsearcher.indices', []));
 
-		$this->app->make(IndicesManager::class)->registerIndices($indices);
+		$manager->registerIndices($indices);
 	}
 }
